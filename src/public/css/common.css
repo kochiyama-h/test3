@@ -1,0 +1,167 @@
+.header {
+  background: #000;
+}
+
+.header__inner {
+  margin: 0 auto;
+  padding: 20px 15px;
+  
+}
+
+.header-utilities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.header__search input {
+  width: 300px; 
+  height: 40px; 
+  padding: 5px; 
+  font-size: 16px; 
+  border: 1px solid #464545; 
+  border-radius: 4px; 
+}
+
+.header__search form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__search button {
+  padding: 10px;
+  font-size: 16px;
+  background-color:  white;
+  
+  border: none;
+  cursor: pointer;
+}
+
+.header__search button:hover {
+  background-color:  rgb(204, 202, 202);
+}
+
+.header__search input::placeholder {
+  color: #101010; /* プレースホルダーの文字色を指定 */
+  opacity: 1; /* 不透明度を調整（1で完全に表示） */
+}
+
+.header-utilities nav {
+  width: 20%;
+}
+
+.header-nav {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between; 
+ 
+}
+
+.header-nav__link {
+  color: #fff;
+  text-decoration: none;
+ 
+}
+
+.header-nav__button {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+
+}
+
+.form__logout{
+  display: inline-block;
+}
+
+
+.header-exhibition__button button{
+  width: 70px;
+  height: 40px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px; 
+  border: 1px solid #464545; 
+  border-radius: 4px; 
+
+}
+
+.header-exhibition__button button:hover{
+  background-color: #bebcbc;
+}
+
+
+@media (min-width: 768px) and (max-width: 850px) {
+  .header__inner {
+    padding: 20px 10px;
+    max-width: 100%; 
+  }
+
+  .header-utilities {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .header__logo img {
+    width: 180px;  
+    margin-right: 20px;
+  }
+  
+  .header__search input {
+    width: 180px;
+  }
+
+  
+  .header__search button {
+    padding: 6px;
+    font-size: 12px;
+    width: 40px;
+  }
+
+  
+  
+
+  .header-nav {    
+    justify-content:space-around;   
+    width: 100%;
+    
+  }
+
+  
+  
+  
+
+  .header-exhibition__button button {
+    font-size: 12px;
+    margin-left: 80px;
+    width: 45px;
+    margin-right: 50px;
+    height: 30px;
+    margin-top: 10px;
+  }
+
+  
+  .header-nav {    
+    margin-left: 50px;
+  }
+
+  .header-nav__item {
+    position: relative;
+    z-index: 10; 
+  }
+
+
+}
+
+
+
