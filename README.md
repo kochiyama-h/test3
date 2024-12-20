@@ -2,8 +2,11 @@
 模擬案件フリマアプリ
 
 # 環境構築
+
 Docker構築
-　リポジトリをclone
+
+
+リポジトリをclone
 　git clone　git@github.com:kochiyama-h/test3.git
 
 dockerコンテナを立ち上げる
