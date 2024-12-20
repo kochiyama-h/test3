@@ -99,6 +99,10 @@ h2,
   justify-content: flex-start;
 }
 
+.form__error {  
+  color: #ff0000;  
+}
+
 @media (min-width: 768px) and (max-width: 850px) {
   .item__detail{
     display: block;

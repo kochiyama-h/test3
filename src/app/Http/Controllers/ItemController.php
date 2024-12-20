@@ -20,7 +20,7 @@ class ItemController extends Controller
     public function itemDetail($id)
     {
         // 商品IDで商品を取得（コメントとカテゴリーも一緒に取得）
-    $item = Item::with('comments', 'categories')->findOrFail($id);
+    $item = Item::with ('comments', 'categories')->findOrFail($id);
 
     // 現在ログインしているユーザーがその商品にいいねしているかをチェック
     $hasLiked = Auth::check() && Auth::user()->hasLiked($item->id);
@@ -46,6 +46,9 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         
         $user = auth()->user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
         return view('purchase', compact('item', 'user'));     
 
     }
@@ -59,18 +62,17 @@ class ItemController extends Controller
     //出品画面
     public function exhibit(ExhibitionRequest $request)
     { 
-        $form = $request->except('img', 'category_id'); // 必要なデータを除外
+        $form = $request->except('img', 'category_id');  //必要なデータを除外
 
         $form['user_id'] = auth()->id(); 
-
-
 
         if ($request->hasFile('img')) {
             $form['img'] = $request->file('img')->store('images', 'public');
         }
-        $item = Item::create($form); // アイテムを作成
-        $item->categories()->sync($request->input('category_id')); // 中間テーブルに保存
+        $item = Item::create($form); //アイテムを作成
+        $item->categories()->sync($request->input('category_id'));  //中間テーブルに保存
         return redirect('/');
+
     }
 
     //コメント送信画面

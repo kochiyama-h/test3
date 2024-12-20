@@ -41,6 +41,10 @@
           <div class="sold-label">SOLD</div>
         @endif
 
+        
+
+        
+
     </div>    
 
 

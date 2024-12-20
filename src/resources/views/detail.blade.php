@@ -116,6 +116,11 @@
 
         @csrf    
       <textarea cols="60" rows="15" name="comment" class=""></textarea>
+      <div class="form__error">
+          @error('comment')
+          {{ $message }}
+          @enderror
+        </div>
   
       <div>
         <button class="item__detail__comment-button" type="submit">コメントを送信する</button>

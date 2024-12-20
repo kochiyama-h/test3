@@ -49,12 +49,12 @@ class User extends Authenticatable
 
     public function likedItems()
     {
-        return $this->belongsToMany(Item::class, 'likes');
+        return $this->belongsToMany(Item::class, 'likes','user_id', 'item_id');
     }
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class,); 
+        return $this->hasMany(Purchase::class); 
     }
 
     public function likes()

@@ -96,10 +96,14 @@ class AuthController extends Controller
     // 'tab'クエリパラメータが'mylist'の場合は「いいねした商品」だけを取得
     if ($request->tab === 'mylist' && Auth::check()) {
         // ログインユーザーがいいねした商品を取得
-        $items = Auth::user()->likedItems()->where('name', 'like', '%' . $search . '%')->get();
+         $items = Auth::user()-> likedItems() ->where('name', 'like', '%' . $search . '%')->get();
     } else {
-        // 商品を検索、検索ワードが空の場合はすべての商品を表示
-        $items = Item::where('name', 'like', '%' . $search . '%')->get();
+        $items = Item::where('name', 'like', '%' . $search . '%')
+                     ->where(function($query) {
+                         $query->whereNull('user_id')  // 出品者がいない商品
+                               ->orWhere('user_id', '!=', Auth::id()); // 自分が出品した商品を除外
+                     })
+                     ->get();
     }
 
     // 購入済み商品のIDを取得
@@ -140,12 +144,14 @@ public function profile(Request $request)
     $tab = $request->query('tab', 'sell');  // 'tab'パラメータが無い場合は'sell'をデフォルトに設定
 
     if ($tab === 'sell') {
-        // 出品した商品
+         //出品した商品
         $items = Item::where('user_id', $user->id)->get();
     } elseif ($tab === 'buy') {
-        // 購入した商品
+        //購入した商品
         $items = $user->purchases()->with('item')->get()->pluck('item');
     }
+
+
 
     if ($user->image && !filter_var($user->image, FILTER_VALIDATE_URL)) {
         // もし画像のパスがすでに 'storage/' を含んでいない場合
@@ -154,9 +160,7 @@ public function profile(Request $request)
         }
     }
 
-
-
-
+    
     return view('profile', compact('user','items')); 
 }
 
