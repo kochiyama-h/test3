@@ -20,9 +20,9 @@ Application Keyの作成
 
 
 ## 使用技術(実行環境)
--PHP: 8.0.2
-Laravel: 9.19
-MySQL8.0.32
+PHP:7.4.9
+Laravel: 8.83.27
+MySQL:8.0.26
 
 ## ER図
 ![er図ファイル drawio](https://github.com/user-attachments/assets/64c6f8fe-e505-493d-9e11-972258af5c9b)
