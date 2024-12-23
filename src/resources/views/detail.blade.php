@@ -102,7 +102,10 @@
         <p>コメント数: {{ $item->comments->count() }}</p>
         
         @foreach($item->comments as $comment)
-            <p>{{ $comment->user->name }}</p>
+        <div class="item__detail__comment__user">
+        <img src="{{ asset('storage/images/' . $comment->user->image) }}" alt="ユーザー画像">
+          <p>{{ $comment->user->name }}</p>
+        </div>
             <input type="text"  class="item__detail__comment__content" placeholder="こちらにコメントが入ります" value="{{ $comment->content }}" readonly>
         @endforeach
 

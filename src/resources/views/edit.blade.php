@@ -17,7 +17,10 @@
 
     <div class="form__group">      
       <div class="form__group-content">
-        <div class="form__input--text"> 
+        <div class="form__input--text">
+
+        <img src="{{ asset('storage/images/' . $user->image) }}" alt="ユーザー画像">
+
                  
           <input type="file" name="image" id="image" value="{{ old('image', $user->image ?? '') }}" />
         </div>

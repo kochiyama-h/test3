@@ -38,6 +38,11 @@
   appearance: none;
 }
 
+.form__input--text img{
+  width: 200px;
+  height: 200px;
+}
+
 .form__button {
   margin-top: 20px;
   

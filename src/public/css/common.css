@@ -118,8 +118,15 @@
   }
   
   .header__search input {
-    width: 180px;
+    width: 160px;
   }
+
+  .header-nav__button {
+    width: 100px;
+   
+  
+  }
+  
 
   
   .header__search button {
@@ -143,9 +150,9 @@
 
   .header-exhibition__button button {
     font-size: 12px;
-    margin-left: 80px;
+    margin-left: 120px;
     width: 45px;
-    margin-right: 50px;
+    margin-right: 30px;
     height: 30px;
     margin-top: 10px;
   }

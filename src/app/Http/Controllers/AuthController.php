@@ -152,15 +152,6 @@ public function profile(Request $request)
     }
 
 
-
-    if ($user->image && !filter_var($user->image, FILTER_VALIDATE_URL)) {
-        // もし画像のパスがすでに 'storage/' を含んでいない場合
-        if (strpos($user->image, 'storage/') !== 0) {
-            $user->image = 'storage/' . $user->image; 
-        }
-    }
-
-    
     return view('profile', compact('user','items')); 
 }
 

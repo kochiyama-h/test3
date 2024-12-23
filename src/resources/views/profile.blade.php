@@ -9,7 +9,7 @@
 
 <div class="user">
   <div class="user__box">
-  <img src="{{asset('storage/images/' . $user->image) }}" alt="ユーザー画像">
+  <img src="{{ asset('storage/images/' . $user->image) }}" alt="ユーザー画像">
   
     <p><strong>{{ $user->name }}</strong></p>
     <form action="/mypage/profile" method="get">
