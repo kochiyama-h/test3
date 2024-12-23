@@ -30,6 +30,9 @@ Application Keyの作成
 シード作成
 　php artisan db:seed
 
+シンボリックリンクを作成
+　php artisan storage:link
+
 
 ## 使用技術(実行環境)
 PHP:7.4.9
