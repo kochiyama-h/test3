@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         $user = User::create($form);
         Auth::login($user);        
-        return redirect('/mypage/profile/setup');
+        return redirect()->route('profile.setup', $user->id);
     } 
     
     public function showLoginForm()

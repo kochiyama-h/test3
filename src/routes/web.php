@@ -53,9 +53,9 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/mypage/profile/setup', function () {
-    return view('edit');
-});
+Route::get('/mypage/profile/{user}/setup', function (App\Models\User $user) {
+    return view('edit', compact('user'));
+})->name('profile.setup');
 
 
 Route::get('/mypage/profile', [AuthController::class, 'profileUpdate']);
