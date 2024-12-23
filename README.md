@@ -27,6 +27,18 @@ Application Keyの作成
 マイグレーション
 　php artisan migrate
 
+（エラーが出る場合は、.envファイルを下記のように編集してください）
+DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+DB_HOST=mysql
+DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+
 シード作成
 　php artisan db:seed
 
