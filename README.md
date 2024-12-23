@@ -12,14 +12,23 @@ Docker構築
 dockerコンテナを立ち上げる
   docker-compose up -d
 
+phpコンテナに移動
+　docker-compose exec php bash
+
+依存ライブラリのインストール
+  composer install
+
+.env ファイルを作成
+  cp .env.example .env
+
 Application Keyの作成
-　docker-compose exec app php artisan key:generate
+　php artisan key:generate
 
 マイグレーション
-　docker-compose exec app php artisan migrate
+　php artisan migrate
 
 シード作成
-　docker-compose exec app php artisan db:seed
+　php artisan db:seed
 
 
 ## 使用技術(実行環境)
