@@ -28,22 +28,28 @@ Application Keyの作成
 　php artisan migrate
 
 （エラーが出る場合は、.envファイルを下記のように編集してください）
-DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-DB_HOST=mysql
-DB_PORT=3306
-# DB_DATABASE=laravel
-# DB_USERNAME=root
-# DB_PASSWORD=
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
+
+<img width="261" alt="image" src="https://github.com/user-attachments/assets/0c77b5ee-1370-4c2f-a3b6-67caae13c8c2" />
+
+
 
 シード作成
 　php artisan db:seed
 
 シンボリックリンクを作成
 　php artisan storage:link
+
+
+PHPunitテスト
+
+　MySQLログイン後
+　 CREATE DATABASE demo_test;
+
+　phpコンテナ上
+　　php artisan migrate --env=testing
+
+　テスト実行
+　　 ./vendor/bin/phpunit
 
 
 ## 使用技術(実行環境)
