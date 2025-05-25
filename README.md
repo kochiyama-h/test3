@@ -10,7 +10,7 @@ Docker構築
 　git clone　git@github.com:kochiyama-h/test3.git
 
 dockerコンテナを立ち上げる
-  docker-compose up -d
+  docker-compose up -d --build
 
 phpコンテナに移動
 　docker-compose exec php bash
