@@ -56,12 +56,15 @@ Laravel: 8.83.27
 MySQL:8.0.26
 
 ## ER図
-![er図ファイル drawio](https://github.com/user-attachments/assets/64c6f8fe-e505-493d-9e11-972258af5c9b)
+![ER図](./public/images/ER図.png)
 
 
 ## URL
-　開発環境：http://localhost
+  開発環境：http://localhost
+
   phpMyAdmin: http://localhost:8080
+
+  Mailhog: http://localhost:8025
 
 
 ## ダミーデータ情報
@@ -101,3 +104,6 @@ email ccc@ccc
 password cccccccc
 
 
+
+
+[def]: public/images/ER図.png

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Purchase;
 use App\Models\Rating;
+use App\Mail\TransactionCompletedMail;
 
 class TransactionController extends Controller
 {
@@ -44,6 +46,9 @@ class TransactionController extends Controller
         }
         
         DB::transaction(function () use ($request, $user, $item, $partner) {
+            // ユーザーの役割を取得
+            $userRole = $this->getUserRole($user, $item);
+            
             // 評価を保存
             $rating = new Rating();
             $rating->rater_id = $user->id;
@@ -54,10 +59,18 @@ class TransactionController extends Controller
             
             // 評価された人の平均評価を更新
             $this->updateUserRating($partner);
+            
+            // 購入者が取引を完了した場合、出品者にメール送信
+            if ($userRole === 'buyer') {
+                // 出品者を取得
+                $seller = $item->user;
+                
+                // 出品者にメール送信
+                Mail::to($seller->email)->send(new TransactionCompletedMail($seller, $user, $item));
+            }
         });
         
-        return redirect()->route('profile', ['tab' => 'trading'])
-            ->with('success', '取引が完了し、評価を送信しました。');
+        return redirect()->route('profile', ['tab' => 'trading']);
     }
     
     /**
