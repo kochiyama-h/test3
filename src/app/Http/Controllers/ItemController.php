@@ -128,8 +128,6 @@ class ItemController extends Controller
         return back();  // 商品詳細画面にリダイレクト
     }
 
-  
-
     
 
 }

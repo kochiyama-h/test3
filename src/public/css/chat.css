@@ -1,0 +1,649 @@
+.chat-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    background-color: #f5f5f5;
+}
+
+/* サイドバー */
+.sidebar {
+    width: 250px;
+    background-color: #e0e0e0;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: #d0d0d0;
+    border-bottom: 1px solid #ccc;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.sidebar-content {
+    padding: 0;
+}
+
+.sidebar-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-item:hover {
+    background-color: #d5d5d5;
+}
+
+.sidebar-item.active {
+    background-color: #c0c0c0;
+}
+
+.sidebar-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* メインチャットエリア */
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.rating-container {
+    margin: 20px 0;
+}
+
+.stars {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.star {
+    transition: color 0.2s;
+}
+
+.star.filled {
+    color: #ffc107;
+}
+
+.star:hover,
+.star:hover ~ .star {
+    color: #ffc107;
+}
+
+.submit-rating-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.submit-rating-btn:hover {
+    background-color: #0056b3;
+}
+
+.submit-rating-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.complete-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.complete-btn:hover {
+    background-color: #218838;
+}
+
+
+
+
+
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+/* チャットヘッダー */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.chat-partner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.partner-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #d0d0d0;
+}
+
+.partner-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.complete-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.complete-btn:hover {
+    background-color: #ff5252;
+}
+
+/* 商品情報 */
+.item-info {
+    display: flex;
+    padding: 30px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.item-image {
+    width: 150px;
+    height: 150px;
+    margin-right: 30px;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #d0d0d0;
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.item-price {
+    font-size: 20px;
+    color: #333;
+    margin: 0;
+}
+
+/* チャットメッセージエリア */
+
+
+.chat-messages {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.message.sent {
+    justify-content: flex-end;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #d0d0d0;
+}
+
+.message-info {
+    max-width: 60%;
+    margin: 0 10px;
+}
+
+.message.sent .message-info {
+    text-align: right;
+}
+
+.message-sender {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.message-content {
+    background-color: #e0e0e0;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message.sent .message-content {
+    background-color: #d0d0d0;
+}
+
+.message-actions {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.edit-btn, .delete-btn {
+    color: #666;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: #333;
+}
+
+
+/* メッセージ画像のスタイル */
+    .message-image {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 8px;
+        margin-top: 8px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .message-image:hover {
+        transform: scale(1.05);
+    }
+
+/* メッセージ入力エリア */
+.message-input-area {
+    padding: 20px 30px;
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.message-form {
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.message-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+}
+
+.message-input:focus {
+    border-color: #ff6b6b;
+}
+
+.image-upload-btn {
+    background-color: transparent;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.image-upload-btn:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.send-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.send-btn:hover {
+    background-color: #ff5252;
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff8e1;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.modal-content p {
+    margin: 0 0 30px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.rating-container {
+    margin-bottom: 30px;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-direction: row-reverse; /* 星を逆順で表示して1→5の順に見せる */
+}
+
+.star {
+    font-size: 40px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* 選択済みの星 */
+.star.filled {
+    color: #ffd700;
+}
+
+/* ホバー効果 - 左から順番に色付け */
+.star:hover,
+.star:hover ~ .star {
+    color: #ffd700;
+}
+
+.form__error {
+  height: 20px;
+  color: #ff0000;
+  text-align: left;
+}
+
+
+
+/* レスポンシブ対応 */
+
+/* タブレット (768px - 850px) */
+@media (min-width: 768px) and (max-width: 850px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .chat-header {
+        padding: 15px 20px;
+    }
+    
+    .partner-name {
+        font-size: 16px;
+    }
+    
+    .item-info {
+        padding: 20px;
+        flex-direction: column;
+    }
+    
+    .item-image {
+        width: 120px;
+        height: 120px;
+        margin-right: 0;
+        margin-bottom: 15px;
+        align-self: center;
+    }
+    
+    .item-name {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .item-price {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .chat-messages {
+        padding: 20px;
+    }
+    
+    .message-input-area {
+        padding: 15px 20px;
+    }
+    
+    .input-container {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .message-input {
+        min-width: 200px;
+    }
+}
+
+/* PC (1400px - 1540px) */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .chat-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+    
+    .chat-header {
+        padding: 25px 40px;
+    }
+    
+    .item-info {
+        padding: 40px;
+    }
+    
+    .item-image {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .chat-messages {
+        padding: 40px;
+    }
+    
+    .message-input-area {
+        padding: 25px 40px;
+    }
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    .chat-container {
+        flex-direction: column;
+        height: calc(100vh - 60px);
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 150px;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    .sidebar-content {
+        display: flex;
+        white-space: nowrap;
+    }
+    
+    .sidebar-item {
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    .chat-header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .partner-name {
+        font-size: 14px;
+    }
+    
+    .complete-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .item-info {
+        padding: 15px;
+        flex-direction: column;
+    }
+    
+    .item-image {
+        width: 100px;
+        height: 100px;
+        margin-right: 0;
+        margin-bottom: 10px;
+        align-self: center;
+    }
+    
+    .item-name {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .item-price {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .chat-messages {
+        padding: 15px;
+    }
+    
+    .message-info {
+        max-width: 80%;
+    }
+    
+    .message-input-area {
+        padding: 10px 15px;
+    }
+    
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .message-input {
+        width: 100%;
+    }
+    
+    .image-upload-btn {
+        align-self: flex-start;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .stars {
+        gap: 5px;
+    }
+    
+    .star {
+        font-size: 30px;
+    }
+
+
+    
+}

@@ -42,6 +42,16 @@ class Item extends Model
         return $this->likes()->count();
     }
 
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     
 
 

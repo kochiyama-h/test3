@@ -12,11 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -25,26 +20,17 @@ class User extends Authenticatable
         'postal_code',
         'address',
         'building',
-
+        'rating'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'rating' => 'float'
     ];
 
     public function likedItems()
@@ -67,6 +53,57 @@ class User extends Authenticatable
         return $this->likes()->where('item_id', $itemId)->exists();
     }
 
-    
+    /**
+     * このユーザーが受けた評価
+     */
+    public function receivedRatings()
+    {
+        return $this->hasMany(Rating::class, 'rated_id');
+    }
 
+    /**
+     * このユーザーがした評価
+     */
+    public function givenRatings()
+    {
+        return $this->hasMany(Rating::class, 'rater_id');
+    }
+
+    /**
+     * 評価の平均値を取得（四捨五入）
+     */
+    public function getAverageRatingAttribute()
+    {
+        $average = $this->receivedRatings()->avg('rating');
+        return $average ? round($average) : null;
+    }
+
+    /**
+     * 評価数を取得
+     */
+    public function getRatingCountAttribute()
+    {
+        return $this->receivedRatings()->count();
+    }
+
+    /**
+     * 評価があるかどうかを確認
+     */
+    public function hasRatings()
+    {
+        return $this->rating_count > 0;
+    }
+
+    /**
+     * 評価の星を表示用に取得
+     */
+    public function getRatingStarsAttribute()
+    {
+        if (!$this->hasRatings()) {
+            return null;
+        }
+        
+        $rating = $this->average_rating;
+        return str_repeat('★', $rating) . str_repeat('☆', 5 - $rating);
+    }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +47,7 @@ Route::post('/', [ItemController::class, 'exhibit']);
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/mypage', [AuthController::class, 'profile']);
+    Route::get('/mypage', [AuthController::class, 'profile'])->name('profile');
     Route::get('/sell', [AuthController::class, 'exhibit']);
     Route::post('item/{id}/comment', [ItemController::class, 'comment']);
     Route::post('/item/{itemId}/like', [ItemController::class, 'likeItem'])->name('item.like');
@@ -63,6 +65,12 @@ Route::post('/mypage/profile', [AuthController::class, 'edit']);
 
 Route::post('purchase/item/{id}', [AuthController::class, 'purchase'])->name('purchase.item');
 
+Route::get('/chat/{item}', [ChatController::class, 'show'])->name('chat');
+Route::post('/transaction/complete', [TransactionController::class, 'complete'])->name('transaction.complete');
 
 
-
+Route::prefix('chat')->group(function () {
+    Route::post('send', [ChatController::class, 'send'])->name('chat.send');
+    Route::put('messages/{id}/update', [ChatController::class, 'update'])->name('chat.update');
+    Route::delete('messages/{id}/delete', [ChatController::class, 'destroy'])->name('chat.delete');
+});
