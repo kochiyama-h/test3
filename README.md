@@ -56,7 +56,7 @@ Laravel: 8.83.27
 MySQL:8.0.26
 
 ## ER図
-![ER図](./public/images/ER図.png)
+![ER図](images/ER図.png)
 
 
 ## URL
