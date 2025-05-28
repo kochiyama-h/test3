@@ -67,21 +67,37 @@ MySQL:8.0.26
 ## ダミーデータ情報
 
 ユーザー１
+
 name aaa
+
 email aaa@aaa
+
 password aaaaaaaa
-itemsテーブルのダミーデータ id１～id５を出品
+
+itemsテーブルのダミーデータ  id１～id５を出品
+
+
 
 
 ユーザー2
+
 name bbb
+
 email bbb@bbb
+
 password bbbbbbbb
-itemsテーブルのダミーデータid６～id１０を出品
+
+itemsテーブルのダミーデータ  id６～id１０を出品
+
+
+
 
 ユーザー3
+
 name ccc
+
 email ccc@ccc
+
 password cccccccc
 
 
