@@ -69,9 +69,7 @@
   position: relative;
 }
 
-.item__navi__menu li.active {
-  border-bottom: 3px solid #ff5555;
-}
+
 
 .item__navi__menu li.active a {
   color: #ff5555;

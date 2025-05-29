@@ -77,6 +77,13 @@ email aaa@aaa
 
 password aaaaaaaa
 
+postal_code  111-1111
+
+address aaa
+
+building aaa
+
+
 itemsテーブルのダミーデータ  id１～id５を出品
 
 
@@ -90,6 +97,12 @@ email bbb@bbb
 
 password bbbbbbbb
 
+postal_code  222-2222
+
+address bbb
+
+building bbb
+
 itemsテーブルのダミーデータ  id６～id１０を出品
 
 
@@ -102,6 +115,12 @@ name ccc
 email ccc@ccc
 
 password cccccccc
+
+postal_code  333-3333
+
+address ccc
+
+building ccc
 
 
 

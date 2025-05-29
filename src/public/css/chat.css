@@ -293,11 +293,23 @@
     font-size: 12px;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn{
     color: #666;
     cursor: pointer;
     margin-left: 10px;
+    font-size: 15px;
 }
+
+.delete-btn{
+    color: #666;
+    cursor: pointer;
+    margin-left: 10px;
+    border: none;
+    background-color: #F9F9F9;
+    font-size: 15px;
+}
+
+
 
 .edit-btn:hover, .delete-btn:hover {
     color: #333;

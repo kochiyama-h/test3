@@ -17,7 +17,11 @@ class UsersTableSeeder extends Seeder
         $param = [
                   'name' => 'aaa',
                   'email' => 'aaa@aaa',
-                  'password' => bcrypt('aaaaaaaa'),                                 
+                  'password' => bcrypt('aaaaaaaa'), 
+                  'postal_code'=> '111-1111',
+                  'address'=> 'aaa',
+                  'building'=> 'aaa',
+
                 ];
                 DB::table('users')->insert($param);
 
@@ -25,14 +29,20 @@ class UsersTableSeeder extends Seeder
         $param = [
                   'name' => 'bbb',
                   'email' => 'bbb@bbb',
-                  'password' => bcrypt('bbbbbbbb'),                                  
+                  'password' => bcrypt('bbbbbbbb'), 
+                  'postal_code'=> '222-2222',
+                  'address'=> 'bbb',
+                  'building'=> 'bbb',                                 
                 ];
                 DB::table('users')->insert($param);
     
         $param = [
                   'name' => 'ccc',
                   'email' => 'ccc@ccc',
-                  'password' => bcrypt('cccccccc'),                                 
+                  'password' => bcrypt('cccccccc'), 
+                  'postal_code'=> '333-3333',
+                  'address'=> 'ccc',
+                  'building'=> 'ccc',                                
                 ];
                 DB::table('users')->insert($param);
     }
