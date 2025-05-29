@@ -98,7 +98,7 @@
 }
 
 .submit-rating-btn {
-    background-color: #007bff;
+    background-color: #ff6b6b;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -109,7 +109,7 @@
 }
 
 .submit-rating-btn:hover {
-    background-color: #0056b3;
+    background-color: #ff5252;
 }
 
 .submit-rating-btn:disabled {
@@ -118,7 +118,7 @@
 }
 
 .complete-btn {
-    background-color: #28a745;
+    background-color: #ff6b6b;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -127,7 +127,7 @@
 }
 
 .complete-btn:hover {
-    background-color: #218838;
+    background-color: #ff5252;
 }
 
 
