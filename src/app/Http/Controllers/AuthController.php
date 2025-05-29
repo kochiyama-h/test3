@@ -138,58 +138,60 @@ class AuthController extends Controller
 
 //プロフィール画面
 public function profile(Request $request)
-    {
-        $user = Auth::user();
-        
-        // リクエストのtabパラメータを確認
-        $tab = $request->query('tab', 'sell');  // 'tab'パラメータが無い場合は'sell'をデフォルトに設定
+{
+   $user = Auth::user();
+   
+   // リクエストのtabパラメータを確認
+   $tab = $request->query('tab', 'sell');  // 'tab'パラメータが無い場合は'sell'をデフォルトに設定
 
-        // 取引中商品の未読メッセージ総数を計算（全タブで表示するため）
-        $tradingNotificationCount = $this->getTradingNotificationCount($user);
+   // 取引中商品の未読メッセージ総数を計算（全タブで表示するため）
+   $tradingNotificationCount = $this->getTradingNotificationCount($user);
 
-        if ($tab === 'sell') {
-            // 出品した商品
-            $items = Item::where('user_id', $user->id)->get();
-            
-        } elseif ($tab === 'buy') {
-            // 購入した商品
-            $items = $user->purchases()->with('item')->get()->pluck('item');
-            
-        } elseif ($tab === 'trading') {
-            // 出品した商品（購入者がいるもの）
-            $soldItems = Item::where('user_id', $user->id)
-                ->whereHas('purchases')
-                ->get();
+   if ($tab === 'sell') {
+       // 出品した商品
+       $items = Item::where('user_id', $user->id)->get();
+       
+   } elseif ($tab === 'buy') {
+       // 購入した商品
+       $items = $user->purchases()->with('item')->get()->pluck('item');
+       
+   } elseif ($tab === 'trading') {
+       // 出品した商品（購入者がいるもの）
+       $soldItems = Item::where('user_id', $user->id)
+           ->whereHas('purchases')
+           ->get();
 
-            // 購入した商品
-            $purchasedItems = $user->purchases()->with('item')->get()->pluck('item');
+       // 購入した商品
+       $purchasedItems = $user->purchases()->with('item')->get()->pluck('item');
 
-            // 両方を結合
-            $items = $soldItems->concat($purchasedItems);
+       // 両方を結合し、重複を除去
+       $items = $soldItems->concat($purchasedItems)
+           ->unique('id')  // 商品IDで重複除去
+           ->values();     // インデックスを再設定
 
-            // 各商品の未読メッセージ数と最新受信メッセージ日時を追加
-            $items = $items->map(function($item) use ($user) {
-                $item->unread_messages_count = $this->getUnreadMessagesCount($item, $user);
+       // 各商品の未読メッセージ数と最新受信メッセージ日時を追加
+       $items = $items->map(function($item) use ($user) {
+           $item->unread_messages_count = $this->getUnreadMessagesCount($item, $user);
 
-                // 自分宛の最新のメッセージの created_at を取得（nullもありうる）
-                $latestMessage = ChatMessage::where('item_id', $item->id)
-                    ->where('receiver_id', $user->id)
-                    ->orderByDesc('created_at')
-                    ->first();
+           // 自分宛の最新のメッセージの created_at を取得（nullもありうる）
+           $latestMessage = ChatMessage::where('item_id', $item->id)
+               ->where('receiver_id', $user->id)
+               ->orderByDesc('created_at')
+               ->first();
 
-                $item->latest_received_at = optional($latestMessage)->created_at ?? now()->subYears(10); // null対策で古い日時
-                return $item;
-            });
+           $item->latest_received_at = optional($latestMessage)->created_at ?? now()->subYears(10); // null対策で古い日時
+           return $item;
+       });
 
-            // 受信日時で並び替え（新しい順）
-            $items = $items->sortByDesc('latest_received_at')->values();
-        
-        } else {
-            $items = collect(); // 空のコレクション
-        }
+       // 受信日時で並び替え（新しい順）
+       $items = $items->sortByDesc('latest_received_at')->values();
+   
+   } else {
+       $items = collect(); // 空のコレクション
+   }
 
-        return view('profile', compact('user', 'items', 'tradingNotificationCount')); 
-    }
+   return view('profile', compact('user', 'items', 'tradingNotificationCount')); 
+}
 
     /**
      * 取引中商品の未読メッセージ総数を取得

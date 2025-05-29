@@ -7,7 +7,7 @@ Docker構築
 
 
 リポジトリをclone
-　git clone　git@github.com:kochiyama-h/test3.git
+　git clone git@github.com:kochiyama-h/test3.git .
 
 dockerコンテナを立ち上げる
   docker-compose up -d --build
@@ -33,6 +33,24 @@ phpコンテナに移動
   DB_USERNAME=laravel_user
 
   DB_PASSWORD=laravel_pass
+
+  MAIL_MAILER=smtp
+
+  MAIL_HOST=mailhog
+  
+  MAIL_PORT=1025
+  
+  MAIL_USERNAME=null
+  
+  MAIL_PASSWORD=null
+  
+  MAIL_ENCRYPTION=null
+  
+  MAIL_FROM_ADDRESS=example@example.com
+  
+  MAIL_FROM_NAME="${APP_NAME}"
+
+
 
 Application Keyの作成 
 　php artisan key:generate
